@@ -1,0 +1,88 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;   /* viewport height*/
+    background-image:url('Images/Untitled\ design.png');
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+
+.container{
+        border: 2px solid purple;
+        margin: auto;
+        margin-top:100px;
+        padding-left:20px;
+        padding-right:20px;
+        width: 50%;
+        border-radius: 28px;
+}
+/*  issue to be resolved
+.container h1{
+    display: block;
+    justify-content: center;
+    align-items: center;
+} */
+
+.btn:hover {
+    background-color: darkgreen;
+}
+
+.btn{
+   
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    
+}
+.form-group input {
+
+    text-align: center;
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 2px solid black;
+    margin: 10px auto;
+    font-size: 15px;
+    border-radius: 8px;
+}
+
+.container button {
+    display: block;
+    width: 74%;
+    margin: 30px auto;
+}
+
+
+
+nav{
+    width: 450px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    text-shadow: 1px 1px;
+
+
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}
+nav a:hover{
+    background-color: blueviolet;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}

@@ -1,0 +1,60 @@
+
+
+nav{
+    width: 450px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    text-shadow: 1px 1px;
+
+
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}
+nav a:hover{
+    background-color: blueviolet;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    /* font-family: 'Josefin Sans', sans-serif; */
+  
+}
+
+
+h1{
+    width: 100%;
+    height: 100vh;   /* viewport height*/
+    background-image:url('Images/Untitled\ design.png');
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    text-align: center;
+
+}
+
+.card-group card img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+/* #carouselExampleInterval{
+    text-align: center;
+}
+.carousel slide{
+    text-align: center;
+} */
+
+.carousel-item active{
+    text-align: center;
+    align-items: center;
+}
