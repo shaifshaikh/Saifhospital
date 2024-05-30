@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+
+    <style>
+        .center-top {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+    </style>
+
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('input[type=file]').change(function () {
+                alert(this.files[0].mozFullPath);
+            });
+        });
+
+        function openModalPopup() {
+
+            //debugger;
+
+            var x = document.getElementById("dropdownEquipment").value;
+            if (x !== "") {
+                document.getElementById("popup").style.display = "block";
+            } else {
+                document.getElementById("popup").style.display = "none";
+            }
+        }
+
+        function save() {
+            //debugger;
+
+            var invoiceNumber = document.getElementById("invoiceNumber").value;
+            var fileInput = document.getElementById("invoiceFile");
+            var file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select a file.");
+                return;
+            }
+
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                var fileContent = event.target.result;
+
+                // Convert file content to byte array
+                var byteArray = new Uint8Array(fileContent);
+
+                debugger;
+
+                //// Prepare data for sending
+                //var data = {
+                //    invoiceNumber: invoiceNumber,
+                //    fileName: file.name,
+                //    fileContent: Array.from(byteArray) // Convert Uint8Array to regular array
+                //};
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SaveData",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    //data: JSON.stringify(data),
+                    data: JSON.stringify({
+                        invoiceNumber: invoiceNumber,
+                        fileName: file.name,
+                        //fileContent: Array.from(byteArray) // Convert Uint8Array to regular array
+                        fileContent: byteArray // Convert Uint8Array to regular array
+                    }),
+                    success: function (result) {
+                        //debugger;
+                        if (result != undefined && result != null) {
+                            alert(result.message);
+                        }
+                    },
+                    error: function () {
+                        //debugger;
+                        alert("Error while saving");
+                    }
+                });
+            };
+
+            // Read the file as an ArrayBuffer
+            reader.readAsBinaryString(file);
+        }
+
+        //function save() {
+
+        //    debugger;
+
+        //    var invoiceNumber = document.getElementById("invoiceNumber").value;
+        //    var filePath = document.getElementById("invoiceFile").files[0].name;
+
+        //    $.ajax(
+        //        {
+        //            type: "POST",
+        //            url: "/Home/SaveData/",
+        //            contentType: "application/json; charset=utf-8",
+        //            dataType: "json",
+        //            data: JSON.stringify({
+        //                invoiceNumber: invoiceNumber,
+        //                filePath: filePath
+        //            }),
+        //            success: function (result) {
+
+        //                debugger;
+
+        //                if (result != undefined && result != null) {
+        //                    if (result.success) {
+        //                        alert(result.message);
+        //                    }
+        //                    else {
+        //                        alert(result.message);
+        //                    }
+        //                }
+        //            },
+        //            error: function () {
+
+        //                debugger;
+
+        //                alert("error while saving");
+        //            }
+        //    });
+        //}
+
+    </script>
+
+    <div class="center-top">
+        <select id="dropdownEquipment" onchange="openModalPopup()">
+            <option value="">--- Select ---</option>
+            <option value="Desktop">Desktop</option>
+            <option value="Printer">Printer</option>
+            <option value="Laptop">Laptop</option>
+        </select>
+    </div>
+
+    <div id="popup" style="display: none;">
+        <input type="text" id="invoiceNumber">
+        <input type="file" id="invoiceFile">
+        <button onclick="save()">Save</button>
+    </div>
+
+</div>
